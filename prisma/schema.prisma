@@ -3,21 +3,21 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model Schedule {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   title     String
   dayOfWeek Int
   startTime String
   endTime   String
   notes     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
-  logs TaskLog[]
+  logs      TaskLog[]
 }
 
 model DeviceToken {
@@ -27,14 +27,12 @@ model DeviceToken {
 }
 
 model TaskLog {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   scheduleId  Int
-  schedule    Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
-  // data do “check” (00:00 no fuso)
+  schedule    Schedule  @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
   date        DateTime
-  completed   Boolean  @default(true)
-  completedAt DateTime @default(now())
+  completed   Boolean   @default(true)
+  completedAt DateTime  @default(now())
 
-  // chave única para poder fazer upsert por (scheduleId, date)
   @@unique([scheduleId, date])
 }

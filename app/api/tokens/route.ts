@@ -14,3 +14,6 @@ export async function POST(req: Request) {
     return new Response('Erro ao salvar token', { status: 500 });
   }
 }
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;

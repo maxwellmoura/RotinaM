@@ -23,3 +23,6 @@ export async function DELETE(req: Request, { params }: { params: { id: string }}
   await prisma.schedule.delete({ where: { id } });
   return new Response(null, { status: 204 });
 }
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
