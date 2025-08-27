@@ -1,0 +1,35 @@
+# Dependências
+node_modules/
+pnpm-lock.yaml
+# (o lock file geralmente é COMMITADO — mantenha somente 1: package-lock.json, yarn.lock ou pnpm-lock.yaml)
+
+# Build / cache
+.next/
+out/
+dist/
+build/
+.cache/
+.turbo/
+
+# Ambiente/segredos
+.env
+.env.*.local
+*.local
+
+# Banco local
+prisma/dev.db
+prisma/dev.db-journal
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+
+# SO
+.DS_Store
+Thumbs.db

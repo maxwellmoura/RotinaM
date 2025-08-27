@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Schedule {
+  id        Int      @id @default(autoincrement())
+  title     String
+  dayOfWeek Int
+  startTime String
+  endTime   String
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  logs TaskLog[]
+}
+
+model DeviceToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model TaskLog {
+  id          Int      @id @default(autoincrement())
+  scheduleId  Int
+  schedule    Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+  // data do “check” (00:00 no fuso)
+  date        DateTime
+  completed   Boolean  @default(true)
+  completedAt DateTime @default(now())
+
+  // chave única para poder fazer upsert por (scheduleId, date)
+  @@unique([scheduleId, date])
+}

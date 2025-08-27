@@ -1,0 +1,31 @@
+{
+  "name": "nova-rotina-system",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "postinstall": "prisma generate",
+    "db:push": "prisma db push",
+    "seed": "node scripts/seed.js",
+    "notify:local": "node scripts/runNotify.js"
+  },
+  "dependencies": {
+    "@prisma/client": "5.13.0",
+    "firebase": "^10.14.1",
+    "firebase-admin": "12.5.0",
+    "next": "^14.2.32",
+    "prisma": "5.13.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.11",
+    "autoprefixer": "10.4.17",
+    "postcss": "8.4.35",
+    "tailwindcss": "3.4.3",
+    "typescript": "5.4.5"
+  }
+}
